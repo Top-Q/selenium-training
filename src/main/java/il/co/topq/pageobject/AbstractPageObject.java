@@ -8,12 +8,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public abstract class AbstractPageObject {
     
 	
-	protected WebDriver driver;
-	public AbstractPageObject(WebDriver driver){
+    private static WebDriver driver =null;
+	private static void driverConfig()
+	{
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		
 	}
+	public static WebDriver getDriverInstance()
+	{
+		if(driver==null)
+		{
+			driverConfig();
+		}
+		return driver;
+	}
+	abstract void assertErrorMessage(String messageText);
 }

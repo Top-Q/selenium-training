@@ -20,7 +20,11 @@ public class SuagarCrmTests {
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+		driver.manage().window().maximize();	
+	}
+
+	@Test
+	public void testSearchInGoogle() throws InterruptedException {
 		driver.get("https://github.com/");
 		driver.findElement(By.linkText("Sign in")).click();
 		//WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -44,13 +48,6 @@ public class SuagarCrmTests {
 		//driver.findElement(By.linkText("Submit new issue")).click();
 		driver.findElement(By.xpath("//div[@class='form-actions']/button[contains(text(),'Submit new issue')]")).click();
 		Thread.sleep(5000);
-		
-		
-	}
-
-	@Test
-	public void testSearchInGoogle() throws InterruptedException {
-		
 	}
 
 	@After
