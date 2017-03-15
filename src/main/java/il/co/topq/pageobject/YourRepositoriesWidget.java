@@ -20,7 +20,7 @@ public class YourRepositoriesWidget extends AbstractPageObject {
 	}
 	
 	public CodePage clickOnRepositoryLnk(String repoName){
-		bot.clickOnElementBy(By.className(repoName));
+		bot.clickOnElementBy(By.xpath("//a[@href='/testingGunit/"+repoName+"']"));
 		return new CodePage(driver);
 	}
 	

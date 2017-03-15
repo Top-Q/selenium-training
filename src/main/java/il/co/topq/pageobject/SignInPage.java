@@ -5,24 +5,25 @@ import org.openqa.selenium.WebDriver;
 
 public class SignInPage extends AbstractPageObject{
 
-	private static final By LOGIN_TB_BY = By.name("login");
-	
+	private static final By LOGIN_TB = By.name("login");
+	private static final By PASSWORD_TB = By.name("password");
+	private static final By LOGIN_BTN = By.name("commit");
 	public SignInPage(WebDriver driver) {
 		super(driver);
 	}
 	public SignInPage typeToEmailTb(String email)
 	{
-		bot.typeToElementBy(LOGIN_TB_BY, email);
+		bot.typeToElementBy(LOGIN_TB, email);
 		return this;
 	}
 	public SignInPage typeToPasswordTb(String password)
 	{
-		driver.findElement(By.name("password")).sendKeys(password);
+		bot.typeToElementBy(PASSWORD_TB, password);
 		return this;
 	}
-	public HomePage clickOnCommitButton()
+	public HomePage clickOnCommitBtn()
 	{
-		driver.findElement(By.name("commit")).click();
+		bot.clickOnElementBy(LOGIN_BTN);
 		return new HomePage(driver);
 	}
 	@Override
@@ -32,6 +33,6 @@ public class SignInPage extends AbstractPageObject{
 	}
 	@Override
 	protected void assertInPage() {
-		bot.waitForElementVisibiltyBy(LOGIN_TB_BY);
+		bot.waitForElementVisibiltyBy(LOGIN_TB);
 	}
 }

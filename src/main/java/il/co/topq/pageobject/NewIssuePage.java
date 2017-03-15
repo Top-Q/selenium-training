@@ -13,19 +13,20 @@ public class NewIssuePage extends AbstractRepositoryPage{
 
 		// TODO Auto-generated constructor stub
 	}
-    public NewIssuePage typeToNewIssueTitle(String title)
+    public NewIssuePage typeToNewIssueTitleTb(String title)
     {
     	bot.typeToElementBy(ISSUE_TITLE_TB, title);
     	return this;
     }
-    public NewIssuePage typeToNewIssueBody(String body)
+    public NewIssuePage typeToNewIssueBodyTb(String body)
     {
     	bot.typeToElementBy(ISSUE_BODY_TB, body);
     	return this;
     }
-    public void clickOnSubmitNewIssue()
+    public IssuePage clickOnSubmitNewIssueBtn()
     {
     	bot.clickOnElementBy(SUBMIT_BTN);
+    	return new IssuePage(driver);
     	
     }
 	@Override

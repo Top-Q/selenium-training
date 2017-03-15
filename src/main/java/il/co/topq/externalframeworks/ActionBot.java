@@ -32,5 +32,9 @@ public class ActionBot {
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
 	}
 	
+	public String getTextFromElementBy(By by)  {
+		return driver.findElement(by).getText();
+	}
+	
 	
 }
