@@ -1,28 +1,22 @@
 package il.co.topq.pageobject;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+import il.co.topq.externalframeworks.ActionBot;
 
 public abstract class AbstractPageObject {
-    
+
+	protected final WebDriver driver;
 	
-    private static WebDriver driver =null;
-	private static void driverConfig()
-	{
-		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+	protected final ActionBot bot;
+	
+	public AbstractPageObject(WebDriver driver){
+		this.driver = driver;
+		bot = new ActionBot(driver);
+		assertInPage();
 	}
-	public static WebDriver getDriverInstance()
-	{
-		if(driver==null)
-		{
-			driverConfig();
-		}
-		return driver;
-	}
+
 	abstract void assertErrorMessage(String messageText);
+	
+	protected abstract void assertInPage();
 }

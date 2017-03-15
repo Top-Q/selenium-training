@@ -5,26 +5,33 @@ import org.openqa.selenium.WebDriver;
 
 public class SignInPage extends AbstractPageObject{
 
-	public SignInPage() {
-		// TODO Auto-generated constructor stub
+	private static final By LOGIN_TB_BY = By.name("login");
+	
+	public SignInPage(WebDriver driver) {
+		super(driver);
 	}
-	public void typeToEmail(String email)
+	public SignInPage typeToEmailTb(String email)
 	{
-		getDriverInstance().findElement(By.name("login")).sendKeys(email);
-
+		bot.typeToElementBy(LOGIN_TB_BY, email);
+		return this;
 	}
-	public void typeToPassowrd(String password)
+	public SignInPage typeToPasswordTb(String password)
 	{
-		getDriverInstance().findElement(By.name("password")).sendKeys(password);
+		driver.findElement(By.name("password")).sendKeys(password);
+		return this;
 	}
 	public HomePage clickOnCommitButton()
 	{
-		getDriverInstance().findElement(By.name("commit")).click();
-		return new HomePage();
+		driver.findElement(By.name("commit")).click();
+		return new HomePage(driver);
 	}
 	@Override
 	void assertErrorMessage(String messageText) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected void assertInPage() {
+		bot.waitForElementVisibiltyBy(LOGIN_TB_BY);
 	}
 }

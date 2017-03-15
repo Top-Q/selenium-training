@@ -3,27 +3,39 @@ package il.co.topq.pageobject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class NewIssuePage extends AbstractPageObject{
+public class NewIssuePage extends AbstractRepositoryPage{
+	private static final By ISSUE_TITLE_TB=By.id("issue_title");
+	private static final By ISSUE_BODY_TB=By.id("issue_body");
+	private static final By SUBMIT_BTN = By.xpath("//div[@class='form-actions']/button[contains(text(),'Submit new issue')]");
 
-	public NewIssuePage() {
+	public NewIssuePage(WebDriver driver) {
+		super(driver);
 
 		// TODO Auto-generated constructor stub
 	}
-    public void typeToNewIssueTitle(String title)
+    public NewIssuePage typeToNewIssueTitle(String title)
     {
-    	getDriverInstance().findElement(By.id("issue_title")).sendKeys(title);
+    	bot.typeToElementBy(ISSUE_TITLE_TB, title);
+    	return this;
     }
-    public void typeToNewIssueBody(String body)
+    public NewIssuePage typeToNewIssueBody(String body)
     {
-    	getDriverInstance().findElement(By.id("issue_body")).sendKeys(body);
+    	bot.typeToElementBy(ISSUE_BODY_TB, body);
+    	return this;
     }
     public void clickOnSubmitNewIssue()
     {
-    	getDriverInstance().findElement(By.xpath("//div[@class='form-actions']/button[contains(text(),'Submit new issue')]")).click();
+    	bot.clickOnElementBy(SUBMIT_BTN);
+    	
     }
 	@Override
 	void assertErrorMessage(String messageText) {
 		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	protected void assertInPage() {
+		bot.waitForElementVisibiltyBy(SUBMIT_BTN);
 		
 	}
 	
