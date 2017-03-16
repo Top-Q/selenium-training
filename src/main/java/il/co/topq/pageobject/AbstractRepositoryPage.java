@@ -18,6 +18,11 @@ public abstract class AbstractRepositoryPage extends AbstractGitHubPage {
 		bot.clickOnElementBy(By.xpath("//a[@href='/testingGunit/" + repoName + "']"));
 		return new CodePage(driver);
 	}
+	public ProjectsPage clickOnProjectsTab(String repoName)
+	{
+		bot.clickOnElementBy(By.xpath("//a[@href='/testingGunit/" + repoName + "/projects']"));
+		return new ProjectsPage(driver);
+	}
 
 	
 
