@@ -6,16 +6,12 @@ import org.testng.annotations.Test;
 
 import il.co.topq.externalframeworks.ExcelUtils;
 import il.co.topq.pageobject.AddCardsModule;
-import il.co.topq.pageobject.CodePage;
-import il.co.topq.pageobject.HomePage;
-import il.co.topq.pageobject.IssuePage;
-import il.co.topq.pageobject.ProjectsPage;
-import il.co.topq.pageobject.SignInPage;
+import il.co.topq.pageobject.*;
 
 public class SubmitNewIssueTest extends AbstractTestCase{
 
-	@Test(dataProvider = "parameters",enabled=false)
-	public void fromStartToEnd(String username, String password, String body) {
+	@Test(dataProvider = "parameters", enabled=false)
+	public void fromStartToEnd(String username, String password) {
 		String repoNameToTest = "test";
 		
 		SignInPage signInPage = introPage.clickOnLogInLink();
@@ -34,7 +30,7 @@ public class SubmitNewIssueTest extends AbstractTestCase{
 		 		.clickOnIssuesTab(repoNameToTest)
 				.clickOnNewIssueBtn()
 				.typeToNewIssueTitleTb(title)
-				.typeToNewIssueBodyTb(body)
+				.typeToNewIssueBodyTb("body body")
 				.clickOnSubmitNewIssueBtn();
 		 
 		 String resultTitle = issuePage.getIssueTitleLbl();
@@ -100,6 +96,33 @@ public class SubmitNewIssueTest extends AbstractTestCase{
 			
 	}
 	
+	@Test(dataProvider = "parameters")
+	public void fromStartToCreationOfMilestone(String username, String password)
+	{
+		String repoNameToTest = "test";
+		
+		SignInPage signInPage = introPage.clickOnLogInLink();
+		HomePage homePage  = signInPage
+				.typeToEmailTb(username)
+				.typeToPasswordTb(password)
+				.clickOnCommitBtn();
+		
+		NewMilestonePage newMilestonePage = homePage
+				.repositoriesWidget()
+				.clickOnRepositoryLnk(repoNameToTest)
+				.clickOnIssuesTab("test")
+				.clickOnMilestonesBtn()
+				.clickNewMilestoneBtn();
+		
+		String milestoneTitle = "Some Milestone" + System.currentTimeMillis();
+		
+		newMilestonePage
+			.typeToMilestoneTitleTb(milestoneTitle)
+			.typeToMilestoneDescriptionTa("Some Milestone")
+			.setDateFromCalenderTb("1 Apr 2017")
+			.clickCreateMilestoneBtn();
+		
+	}
 	
 	@DataProvider(name = "parametersForIssuesToColumns")
 	public Object[][] createDataForAddingIssuesToColumns() {
@@ -108,7 +131,7 @@ public class SubmitNewIssueTest extends AbstractTestCase{
 	
 	@DataProvider(name = "parameters")
 	public Object[][] createData() {
-		return new Object[][] { { "sudo.chmod.a.x777@gmail.com", "sudogit777", "body body" } };
+		return new Object[][] { { "sudo.chmod.a.x777@gmail.com", "sudogit777"} };
 	}
 	
 	@DataProvider(name = "newProJectParameters")
