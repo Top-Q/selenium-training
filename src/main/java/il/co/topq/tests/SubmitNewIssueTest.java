@@ -64,7 +64,7 @@ public class SubmitNewIssueTest extends AbstractTestCase{
 		CodePage repositoryPage = homePage
 				.repositoriesWidget()
 				.clickOnRepositoryLnk(repoNameToTest);
-		ProjectsPage projectsPage = repositoryPage.clickOnProjects(repoNameToTest);
+		ProjectsPage projectsPage = repositoryPage.clickOnProjectsTab(repoNameToTest);
 		projectsPage
 			.clickOnNewProjectBtn()
 			.typeToNewProjectNameTb(projectName)
@@ -76,8 +76,27 @@ public class SubmitNewIssueTest extends AbstractTestCase{
 				
 				
 	}
+	@Test(dataProvider="parametersForIssuesToColumns")
+	public void AddingIssuesToColumn(String userName,String passWord,String projectName,String columnName)
+	{
+String repoNameToTest = "test";
+		
+		SignInPage signInPage = introPage.clickOnLogInLink();
+		HomePage homePage  = signInPage
+				.typeToEmailTb(userName)
+				.typeToPasswordTb(passWord)
+				.clickOnCommitBtn();
+		CodePage repositoryPage = homePage
+				.repositoriesWidget()
+				.clickOnRepositoryLnk(repoNameToTest);
+		ProjectsPage projectsPage = repositoryPage.clickOnProjectsTab(repoNameToTest);
+	}
 	
 	
+	@DataProvider(name = "parametersForIssuesToColumns")
+	public Object[][] createDataForAddingIssuesToColumns() {
+		return new Object[][] { { "sudo.chmod.a.x777@gmail.com", "sudogit777", "This is project title", "C1" } };
+	}
 	
 	@DataProvider(name = "parameters")
 	public Object[][] createData() {

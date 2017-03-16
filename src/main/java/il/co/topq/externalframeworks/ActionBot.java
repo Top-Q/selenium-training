@@ -3,6 +3,7 @@ package il.co.topq.externalframeworks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -34,6 +35,13 @@ public class ActionBot {
 	
 	public String getTextFromElementBy(By by)  {
 		return driver.findElement(by).getText();
+	}
+	public ActionBot dragFromAndDropTo(By from,By to)
+	{
+		WebElement Fromelement = driver.findElement(from);
+		WebElement Toelement = driver.findElement(to);
+		(new Actions(driver)).dragAndDrop(Fromelement,Toelement);
+		return this;
 	}
 	
 	

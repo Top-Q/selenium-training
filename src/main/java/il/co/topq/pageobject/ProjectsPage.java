@@ -10,21 +10,28 @@ public class ProjectsPage extends AbstractRepositoryPage {
 		super(driver);		
 		// TODO Auto-generated constructor stub
 	}
-	 public NewProjectPage clickOnNewProjectBtn()
-	  {
-	    	bot.clickOnElementBy(NEW_PROJECT_BTN);
-	    	return new NewProjectPage(driver);
-	  }
+	public NewProjectPage clickOnNewProjectBtn()
+	{
+		bot.clickOnElementBy(NEW_PROJECT_BTN);
+		return new NewProjectPage(driver);
+	}
+	
+	public ProjectEditPage clickOnProjectLink(String projectName)
+	{
+		By projectLink = By.xpath("//a[contains(text(),'"+projectName+"')]");
+		bot.clickOnElementBy(projectLink);
+		return new ProjectEditPage(driver);
+	}
 	@Override
 	void assertErrorMessage(String messageText) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void assertInPage() {
 		bot.waitForElementVisibiltyBy(NEW_PROJECT_BTN);
-		
+
 	}
 
 }
