@@ -8,11 +8,12 @@ import il.co.topq.externalframeworks.ExcelUtils;
 import il.co.topq.pageobject.CodePage;
 import il.co.topq.pageobject.HomePage;
 import il.co.topq.pageobject.IssuePage;
+import il.co.topq.pageobject.ProjectsPage;
 import il.co.topq.pageobject.SignInPage;
 
 public class SubmitNewIssueTest extends AbstractTestCase{
 
-	@Test(dataProvider = "parameters")
+	@Test(dataProvider = "parameters",enabled=false)
 	public void fromStartToEnd(String username, String password, String body) {
 		String repoNameToTest = "test";
 		
@@ -50,12 +51,42 @@ public class SubmitNewIssueTest extends AbstractTestCase{
 		 		.chooseMileStoneFromListByNameSpan("MS1.0.0");
 		 		
 	}
+	@Test(dataProvider="newProJectParameters")
+	public void AddingNewProject(String username,String password,String projectName,String projectDescription,String columnName)
+	{
+		String repoNameToTest = "test";
+		
+		SignInPage signInPage = introPage.clickOnLogInLink();
+		HomePage homePage  = signInPage
+				.typeToEmailTb(username)
+				.typeToPasswordTb(password)
+				.clickOnCommitBtn();
+		CodePage repositoryPage = homePage
+				.repositoriesWidget()
+				.clickOnRepositoryLnk(repoNameToTest);
+		ProjectsPage projectsPage = repositoryPage.clickOnProjects(repoNameToTest);
+		projectsPage
+			.clickOnNewProjectBtn()
+			.typeToNewProjectNameTb(projectName)
+			.typeToNewProjectBodyTb(projectDescription)
+			.clickOnSaveProjectBtn()
+			.clickOnAddNewColumnLink()
+			.typeToNewColumnNameTb(columnName)
+			.clickOnCreateNewColumnBtn();
+				
+				
+	}
 	
 	
 	
 	@DataProvider(name = "parameters")
 	public Object[][] createData() {
 		return new Object[][] { { "sudo.chmod.a.x777@gmail.com", "sudogit777", "body body" } };
+	}
+	
+	@DataProvider(name = "newProJectParameters")
+	public Object[][] createNewData() {
+		return new Object[][] { { "sudo.chmod.a.x777@gmail.com", "sudogit777", "This is project title","This is project description","column columns" } };
 	}
 	
 	@DataProvider(name = "excelparameters")

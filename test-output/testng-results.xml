@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="1" total="2" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="11161" started-at="2017-03-16T08:11:23Z" finished-at="2017-03-16T08:11:35Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="11161" started-at="2017-03-16T08:11:23Z" finished-at="2017-03-16T08:11:35Z">
+      <class name="il.co.topq.tests.SubmitNewIssueTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:il.co.topq.tests.SubmitNewIssueTest@27efef64]" name="setUp" is-config="true" duration-ms="5734" started-at="2017-03-16T10:11:23Z" finished-at="2017-03-16T10:11:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="AddingNewProject(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:il.co.topq.tests.SubmitNewIssueTest@27efef64]" name="AddingNewProject" duration-ms="5407" started-at="2017-03-16T10:11:29Z" data-provider="newProJectParameters" finished-at="2017-03-16T10:11:35Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[sudo.chmod.a.x777@gmail.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[sudogit777]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[This is project title]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[This is project description]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[column columns]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AddingNewProject -->
+      </class> <!-- il.co.topq.tests.SubmitNewIssueTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
