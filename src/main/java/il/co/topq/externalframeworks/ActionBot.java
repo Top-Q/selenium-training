@@ -1,6 +1,7 @@
 package il.co.topq.externalframeworks;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -36,5 +37,25 @@ public class ActionBot {
 		return driver.findElement(by).getText();
 	}
 	
+	public ActionBot executeJavaScript(String javaScriptCode)
+	{
+		((JavascriptExecutor)driver).executeScript(javaScriptCode, "");
+		return this;
+	}
 	
+	public ActionBot setAttributeValueBy(String xpathForFindingElement, String attributeName, String attributeValue)
+	{
+		String javaScriptCodeForSettingAttribute = "function getElementByXpath(path) {"
+				+ "return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;"
+				+ "}"
+				+ "getElementByXpath(\"" + xpathForFindingElement + "\").setAttribute(\"" + attributeName +"\", \""+ attributeValue +"\");";
+		
+		executeJavaScript(javaScriptCodeForSettingAttribute);
+		return this;
+	}
+	
+	public String getAttributeValueBy(By by, String attributeName)
+	{
+		return driver.findElement(by).getAttribute(attributeName);
+	}
 }
