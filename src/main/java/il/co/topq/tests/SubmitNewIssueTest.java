@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import il.co.topq.externalframeworks.ExcelUtils;
+import il.co.topq.pageobject.AddCardsModule;
 import il.co.topq.pageobject.CodePage;
 import il.co.topq.pageobject.HomePage;
 import il.co.topq.pageobject.IssuePage;
@@ -51,7 +52,7 @@ public class SubmitNewIssueTest extends AbstractTestCase{
 		 		.chooseMileStoneFromListByNameSpan("MS1.0.0");
 		 		
 	}
-	@Test(dataProvider="newProJectParameters")
+	@Test(dataProvider="newProJectParameters",enabled=false)
 	public void AddingNewProject(String username,String password,String projectName,String projectDescription,String columnName)
 	{
 		String repoNameToTest = "test";
@@ -64,6 +65,7 @@ public class SubmitNewIssueTest extends AbstractTestCase{
 		CodePage repositoryPage = homePage
 				.repositoriesWidget()
 				.clickOnRepositoryLnk(repoNameToTest);
+		
 		ProjectsPage projectsPage = repositoryPage.clickOnProjectsTab(repoNameToTest);
 		projectsPage
 			.clickOnNewProjectBtn()
@@ -77,9 +79,9 @@ public class SubmitNewIssueTest extends AbstractTestCase{
 				
 	}
 	@Test(dataProvider="parametersForIssuesToColumns")
-	public void AddingIssuesToColumn(String userName,String passWord,String projectName,String columnName)
+	public void AddingIssuesToColumn(String userName,String passWord,String projectName,String columnName,String issueName)
 	{
-String repoNameToTest = "test";
+		String repoNameToTest = "test";
 		
 		SignInPage signInPage = introPage.clickOnLogInLink();
 		HomePage homePage  = signInPage
@@ -90,12 +92,18 @@ String repoNameToTest = "test";
 				.repositoriesWidget()
 				.clickOnRepositoryLnk(repoNameToTest);
 		ProjectsPage projectsPage = repositoryPage.clickOnProjectsTab(repoNameToTest);
+		AddCardsModule cardModule= projectsPage
+			.clickOnProjectLink(projectName)
+			.clickOnAddCardsLink()
+			.dragIssueDropToColumn(issueName, columnName);
+			cardModule.clickOnExitFromAddCardsBtn();
+			
 	}
 	
 	
 	@DataProvider(name = "parametersForIssuesToColumns")
 	public Object[][] createDataForAddingIssuesToColumns() {
-		return new Object[][] { { "sudo.chmod.a.x777@gmail.com", "sudogit777", "This is project title", "C1" } };
+		return new Object[][] { { "sudo.chmod.a.x777@gmail.com", "sudogit777", "This is project title", "C1" ,"tuj"} };
 	}
 	
 	@DataProvider(name = "parameters")

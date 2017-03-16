@@ -32,7 +32,9 @@ public class ActionBot {
 	public void waitForElementVisibiltyBy(By by) {
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
 	}
-	
+	public void waitForElementPresenceBy(By by) {
+		wait.until(ExpectedConditions.presenceOfElementLocated(by));
+	}
 	public String getTextFromElementBy(By by)  {
 		return driver.findElement(by).getText();
 	}
@@ -40,7 +42,7 @@ public class ActionBot {
 	{
 		WebElement Fromelement = driver.findElement(from);
 		WebElement Toelement = driver.findElement(to);
-		(new Actions(driver)).dragAndDrop(Fromelement,Toelement);
+		(new Actions(driver)).dragAndDrop(Fromelement,Toelement).perform();
 		return this;
 	}
 	

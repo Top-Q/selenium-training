@@ -2,9 +2,11 @@ package il.co.topq.pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.mobile.AddNetworkConnection;
 
 public class ProjectEditPage extends AbstractRepositoryPage {
 	private static final By ADD_COLUMN_LINK = By.xpath("//a[@href='#add-column']");
+	private static final By ADD_CARDS_BTN = By.xpath("//*[contains(@data-channel,'add_cards')]/button");
 	public ProjectEditPage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -14,6 +16,11 @@ public class ProjectEditPage extends AbstractRepositoryPage {
     	bot.clickOnElementBy(ADD_COLUMN_LINK);
     	return new NewColumnAddNameWidget(driver);
     }
+    public AddCardsModule clickOnAddCardsLink()
+    {
+    	bot.clickOnElementBy(ADD_CARDS_BTN);
+    	return new AddCardsModule(driver);
+    }
 	@Override
 	void assertErrorMessage(String messageText) {
 		// TODO Auto-generated method stub
@@ -22,7 +29,7 @@ public class ProjectEditPage extends AbstractRepositoryPage {
 
 	@Override
 	protected void assertInPage() {
-		bot.waitForElementVisibiltyBy(ADD_COLUMN_LINK);
+		bot.waitForElementPresenceBy(ADD_CARDS_BTN);
 		
 	}
 
