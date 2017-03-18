@@ -44,11 +44,12 @@ public class ActionBot {
     public ActionBot dragFromAndDropTo(By from, By to) {
         WebElement fromElement = driver.findElement(from);
         WebElement toElement = driver.findElement(to);
-        (new Actions(driver))
-                .clickAndHold(fromElement)
-                .moveToElement(toElement)
-                .release()
-                .perform();
+        (new Actions(driver)).dragAndDrop(fromElement, toElement).perform();
+        try {
+			ExternalUtils.dragAndDropElement(fromElement, toElement);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         return this;
     }
 
