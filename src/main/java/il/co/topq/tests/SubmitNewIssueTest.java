@@ -13,7 +13,7 @@ import il.co.topq.pageobject.*;
 public class SubmitNewIssueTest extends AbstractTestCase {
     @DataProvider(name = "parametersForIssuesToColumns")
     public Object[][] createDataForAddingIssuesToColumns() {
-        return new Object[][]{{"sudo.chmod.a.x777@gmail.com", "sudogit777", "This is project title", "C1", "tuj"}};
+        return new Object[][]{{"sudo.chmod.a.x777@gmail.com", "sudogit777", "This is project title", "column columns", "tuj"}};
     }
 
     @DataProvider(name = "parameters")
@@ -32,7 +32,7 @@ public class SubmitNewIssueTest extends AbstractTestCase {
         return (testObjArray);
     }
 
-    @Test(dataProvider = "parameters", enabled = true)
+    @Test(dataProvider = "parameters", enabled = false)
     public void fromStartToEnd(String username, String password) {
         String repoNameToTest = "test";
 
@@ -70,7 +70,7 @@ public class SubmitNewIssueTest extends AbstractTestCase {
                 .chooseMileStoneFromListByNameSpan("MS1.0.0");
     }
 
-    @Test(dataProvider = "newProJectParameters", enabled = true)
+    @Test(dataProvider = "newProJectParameters", enabled = false)
     public void AddingNewProject(String username, String password, String projectName, String projectDescription, String columnName) {
         String repoNameToTest = "test";
 
@@ -114,7 +114,7 @@ public class SubmitNewIssueTest extends AbstractTestCase {
         cardModule.clickOnExitFromAddCardsBtn();
     }
 
-    @Test(dataProvider = "parameters", enabled = true)
+    @Test(dataProvider = "parameters", enabled = false)
     public void fromStartToCreationOfMilestone(String username, String password) {
         String repoNameToTest = "test";
 

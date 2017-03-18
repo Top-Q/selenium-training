@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class AddCardsModule extends AbstractRepositoryPage {
-    private final By EXIT_BTN = By.xpath("//h4[text()='Add cards']/../button[contains(@class,'js-hide-project-menu')]");
+    private static final By EXIT_BTN = By.xpath("//h4[text()='Add cards']/../button[contains(@class,'js-hide-project-menu')]");
 
     public AddCardsModule(WebDriver driver) {
         super(driver);
@@ -29,6 +29,6 @@ public class AddCardsModule extends AbstractRepositoryPage {
 
     @Override
     protected void assertInPage() {
-        // TODO Auto-generated method stub
+        bot.waitForElementVisibiltyBy(EXIT_BTN);
     }
 }
