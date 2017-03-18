@@ -21,3 +21,8 @@ target/
 
 # testNG
 test-output/
+
+# InteliJ
+.idea
+*.iml
+out/

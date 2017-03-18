@@ -4,25 +4,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class YourRepositoriesWidget extends AbstractPageObject {
+    public YourRepositoriesWidget(WebDriver driver) {
+        super(driver);
+    }
 
-	public YourRepositoriesWidget(WebDriver driver) {
-		super(driver);
-	}
+    @Override
+    void assertErrorMessage(String messageText) {
+    }
 
-	@Override
-	void assertErrorMessage(String messageText) {
+    @Override
+    protected void assertInPage() {
+    }
 
-	}
-
-	@Override
-	protected void assertInPage() {
-
-	}
-	
-	public CodePage clickOnRepositoryLnk(String repoName){
-		bot.clickOnElementBy(By.xpath("//a[@href='/testingGunit/"+repoName+"']"));
-		return new CodePage(driver);
-	}
-	
-
+    public CodePage clickOnRepositoryLnk(String repoName) {
+        bot.clickOnElementBy(By.xpath("//a[@href='/testingGunit/" + repoName + "']"));
+        return new CodePage(driver);
+    }
 }
