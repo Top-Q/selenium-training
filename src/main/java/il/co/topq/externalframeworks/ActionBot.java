@@ -45,6 +45,12 @@ public class ActionBot {
         WebElement Fromelement = driver.findElement(from);
         WebElement Toelement = driver.findElement(to);
         (new Actions(driver)).dragAndDrop(Fromelement, Toelement).perform();
+        try {
+			ExternalUtils.dragAndDropElement(Fromelement, Toelement);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return this;
     }
 
