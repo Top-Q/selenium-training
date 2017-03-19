@@ -34,7 +34,7 @@ public class NewMilestonePage extends AbstractRepositoryPage {
         return this;
     }
 
-    public NewMilestonePage typeToMilestoneDescriptionTa(String description) {
+    public NewMilestonePage typeToMilestoneDescriptionTb(String description) {
         bot.typeToElementBy(MILESTONE_DESCRIPTION_TA, description);
         return this;
     }

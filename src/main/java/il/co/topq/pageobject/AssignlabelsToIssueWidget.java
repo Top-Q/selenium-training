@@ -20,12 +20,12 @@ public class AssignlabelsToIssueWidget extends AbstractPageObject {
         bot.waitForElementVisibiltyBy(EXIT_SVG);
     }
 
-    public AssignlabelsToIssueWidget chooseLabelsFromListByName(String name) {
+    public AssignlabelsToIssueWidget chooseLabelsFromListByCb(String name) {
         bot.clickOnElementBy(By.xpath("//div[@class='select-menu-modal']//span[text()='Apply labels to this issue']/../../..//div[@data-name='" + name + "']/../../.."));
         return this;
     }
 
-    public IssuePage clickOnExitSvg() {
+    public IssuePage clickOnExitBtn() {
         bot.clickOnElementBy(EXIT_SVG);
         return new IssuePage(driver);
     }

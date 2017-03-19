@@ -10,7 +10,7 @@ public class AssignMileStoneToIssueWidget extends AbstractPageObject {
         super(driver);
     }
 
-    public AssignMileStoneToIssueWidget chooseMileStoneFromListByNameSpan(String mileStone) {
+    public AssignMileStoneToIssueWidget chooseMileStoneFromListByRd(String mileStone) {
         bot.clickOnElementBy(By.xpath("//div[@class='select-menu-modal']//span[contains(., '" + mileStone + "')]/../.."));
         return this;
     }

@@ -27,13 +27,14 @@ public class SubmitNewIssueTest extends AbstractTestCase {
     }
 
     @DataProvider(name = "excelparameters")
-    public Object[][] Authentication() throws Exception {
+    public Object[][] authentication() throws Exception {
         Object[][] testObjArray = ExcelUtils.getTableArray("src//main//resources//datax.xls", "Sheet1");
         return (testObjArray);
     }
 
-    @Test(dataProvider = "parameters", enabled = false)
-    public void fromStartToEnd(String username, String password) {
+    @Test(dataProvider = "parameters", enabled = true)
+    public void addingNewIssue(String username, String password) {
+    	report.startLevel("Adding New Issue");
         String repoNameToTest = "test";
 
         SignInPage signInPage = introPage.clickOnLogInLink();
@@ -44,12 +45,12 @@ public class SubmitNewIssueTest extends AbstractTestCase {
 
         CodePage repositoryPage = homePage
                 .repositoriesWidget()
-                .clickOnRepositoryLnk(repoNameToTest);
+                .clickOnRepositoryLink(repoNameToTest);
 
         final String title = "someIssue" + System.currentTimeMillis();
 
         IssuePage issuePage = repositoryPage
-                .clickOnIssuesTab(repoNameToTest)
+                .clickOnIssuesNavBtn(repoNameToTest)
                 .clickOnNewIssueBtn()
                 .typeToNewIssueTitleTb(title)
                 .typeToNewIssueBodyTb("body body")
@@ -60,18 +61,19 @@ public class SubmitNewIssueTest extends AbstractTestCase {
         Assert.assertTrue(strCompResult);
 
         issuePage
-                .clickOnAssingeesAssignBTN()
-                .chooseLabelsFromListByName("testingGunit")
-                .clickOnExitSvg()
-                .clickOnLabelsAssignBTN()
-                .chooseLabelsFromListByName("bug")
-                .clickOnExitSvg()
-                .clickOnMileStoneAssignBTN()
-                .chooseMileStoneFromListByNameSpan("MS1.0.0");
+                .clickOnAssingeesAssignBtn()
+                .chooseLabelsFromListByCb("testingGunit")
+                .clickOnExitBtn()
+                .clickOnLabelsAssignBtn()
+                .chooseLabelsFromListByCb("bug")
+                .clickOnExitBtn()
+                .clickOnMileStoneAssignBtn()
+                .chooseMileStoneFromListByRd("MS1.0.0");
+        report.endLevel();
     }
 
     @Test(dataProvider = "newProJectParameters", enabled = false)
-    public void AddingNewProject(String username, String password, String projectName, String projectDescription, String columnName) {
+    public void addingNewProject(String username, String password, String projectName, String projectDescription, String columnName) {
         String repoNameToTest = "test";
 
         SignInPage signInPage = introPage.clickOnLogInLink();
@@ -81,9 +83,9 @@ public class SubmitNewIssueTest extends AbstractTestCase {
                 .clickOnCommitBtn();
         CodePage repositoryPage = homePage
                 .repositoriesWidget()
-                .clickOnRepositoryLnk(repoNameToTest);
+                .clickOnRepositoryLink(repoNameToTest);
 
-        ProjectsPage projectsPage = repositoryPage.clickOnProjectsTab(repoNameToTest);
+        ProjectsPage projectsPage = repositoryPage.clickOnProjectsNavBtn(repoNameToTest);
         projectsPage
                 .clickOnNewProjectBtn()
                 .typeToNewProjectNameTb(projectName)
@@ -94,8 +96,8 @@ public class SubmitNewIssueTest extends AbstractTestCase {
                 .clickOnCreateNewColumnBtn();
     }
 
-    @Test(dataProvider = "parametersForIssuesToColumns", enabled = true)
-    public void AddingIssuesToColumn(String userName, String passWord, String projectName, String columnName, String issueName) {
+    @Test(dataProvider = "parametersForIssuesToColumns", enabled = false)
+    public void addingIssuesToColumn(String userName, String passWord, String projectName, String columnName, String issueName) {
         String repoNameToTest = "test";
 
         SignInPage signInPage = introPage.clickOnLogInLink();
@@ -105,17 +107,21 @@ public class SubmitNewIssueTest extends AbstractTestCase {
                 .clickOnCommitBtn();
         CodePage repositoryPage = homePage
                 .repositoriesWidget()
-                .clickOnRepositoryLnk(repoNameToTest);
-        ProjectsPage projectsPage = repositoryPage.clickOnProjectsTab(repoNameToTest);
-        AddCardsModule cardModule = projectsPage
-                .clickOnProjectLink(projectName)
-                .clickOnAddCardsLink()
-                .dragIssueDropToColumn(issueName, columnName);
-        cardModule.clickOnExitFromAddCardsBtn();
+                .clickOnRepositoryLink(repoNameToTest);
+        ProjectEditPage projectEditPage = repositoryPage
+        		.clickOnProjectsNavBtn(repoNameToTest)
+        		.clickOnProjectLink(projectName);
+        AddCardsModule addcardsModule =projectEditPage
+        		.clickOnAddCardsLink();
+        AddCardIssueModule issueModule = addcardsModule
+        		.getIssue(issueName);
+        
+        projectEditPage.dragIssueOnCoulumn(issueModule, columnName);
+        addcardsModule.clickOnExitFromAddCardsBtn();
     }
-
+    
     @Test(dataProvider = "parameters", enabled = false)
-    public void fromStartToCreationOfMilestone(String username, String password) {
+    public void creationOfMilestone(String username, String password) {
         String repoNameToTest = "test";
 
         SignInPage signInPage = introPage.clickOnLogInLink();
@@ -126,8 +132,8 @@ public class SubmitNewIssueTest extends AbstractTestCase {
 
         NewMilestonePage newMilestonePage = homePage
                 .repositoriesWidget()
-                .clickOnRepositoryLnk(repoNameToTest)
-                .clickOnIssuesTab("test")
+                .clickOnRepositoryLink(repoNameToTest)
+                .clickOnIssuesNavBtn("test")
                 .clickOnMilestonesBtn()
                 .clickNewMilestoneBtn();
 
@@ -135,7 +141,7 @@ public class SubmitNewIssueTest extends AbstractTestCase {
 
         newMilestonePage
                 .typeToMilestoneTitleTb(milestoneTitle)
-                .typeToMilestoneDescriptionTa("Some Milestone")
+                .typeToMilestoneDescriptionTb("Some Milestone")
                 .setDateFromCalenderTb("1 Apr 2017")
                 .clickCreateMilestoneBtn();
     }

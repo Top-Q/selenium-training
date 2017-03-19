@@ -10,12 +10,12 @@ public class AssignAssigneesToIssueWidget extends AbstractPageObject {
         super(driver);
     }
 
-    public AssignAssigneesToIssueWidget chooseLabelsFromListByName(String projectName) {
+    public AssignAssigneesToIssueWidget chooseLabelsFromListByCb(String projectName) {
         bot.clickOnElementBy(By.xpath("//div[@class='select-menu-modal']//span[contains(., '" + projectName + "')]"));
         return this;
     }
 
-    public IssuePage clickOnExitSvg() {
+    public IssuePage clickOnExitBtn() {
         bot.clickOnElementBy(EXIT_SVG);
         return new IssuePage(driver);
     }

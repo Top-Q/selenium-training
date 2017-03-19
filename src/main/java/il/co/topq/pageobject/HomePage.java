@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage extends AbstractGitHubPage {
+	private static final By READ_GUIDE_BTN = By.cssSelector("a[href='https://guides.github.com/activities/hello-world/']");
+	
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -19,6 +21,6 @@ public class HomePage extends AbstractGitHubPage {
 
     @Override
     protected void assertInPage() {
-        // TODO Auto-generated method stub
+      bot.waitForElementVisibiltyBy(READ_GUIDE_BTN);
     }
 }

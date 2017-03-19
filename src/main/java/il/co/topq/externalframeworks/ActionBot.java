@@ -8,7 +8,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import il.co.topq.difido.ReportDispatcher;
+import il.co.topq.difido.ReportManager;
+
 public class ActionBot {
+	protected ReportDispatcher report = ReportManager.getInstance();
     private final WebDriver driver;
     private final WebDriverWait wait;
 
@@ -19,6 +23,7 @@ public class ActionBot {
 
     public ActionBot clickOnElementBy(By by) {
         driver.findElement(by).click();
+        report.log("clicked");
         return this;
     }
 
@@ -57,7 +62,7 @@ public class ActionBot {
         ((JavascriptExecutor) driver).executeScript(javaScriptCode, "");
         return this;
     }
-
+    
     public ActionBot setAttributeValueBy(String xpathForFindingElement, String attributeName, String attributeValue) {
         String javaScriptCodeForSettingAttribute = "function getElementByXpath(path) {"
                 + "return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;"

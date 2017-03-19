@@ -8,7 +8,7 @@ public abstract class AbstractRepositoryPage extends AbstractGitHubPage {
         super(driver);
     }
 
-    public IssuesPage clickOnIssuesTab(String repoName) {
+    public IssuesPage clickOnIssuesNavBtn(String repoName) {
         bot.clickOnElementBy(By.xpath("//a[@href='/testingGunit/" + repoName + "/issues']"));
         return new IssuesPage(driver);
     }
@@ -18,7 +18,7 @@ public abstract class AbstractRepositoryPage extends AbstractGitHubPage {
         return new CodePage(driver);
     }
 
-    public ProjectsPage clickOnProjectsTab(String repoName) {
+    public ProjectsPage clickOnProjectsNavBtn(String repoName) {
         bot.clickOnElementBy(By.xpath("//a[@href='/testingGunit/" + repoName + "/projects']"));
         return new ProjectsPage(driver);
     }

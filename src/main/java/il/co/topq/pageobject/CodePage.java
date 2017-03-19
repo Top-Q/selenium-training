@@ -1,8 +1,11 @@
 package il.co.topq.pageobject;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CodePage extends AbstractRepositoryPage {
+	private static final By CLONE_DOWNLOAD_BTN = By.cssSelector("button.btn.btn-sm.btn-primary");
+	
     public CodePage(WebDriver driver) {
         super(driver);
     }
@@ -14,6 +17,6 @@ public class CodePage extends AbstractRepositoryPage {
 
     @Override
     protected void assertInPage() {
-        // TODO Auto-generated method stub
+        bot.waitForElementVisibiltyBy(CLONE_DOWNLOAD_BTN);
     }
 }
