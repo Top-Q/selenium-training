@@ -5,40 +5,40 @@ import org.openqa.selenium.WebDriver;
 
 public class IssuePage extends AbstractRepositoryPage {
 	private static final By ISSUE_TITLE_LBL = By.xpath("//span[@class='js-issue-title']");
-    private static final By LABELS_ASSIGN_BTN = By.xpath("//button[text()[contains(.,'Labels')]]");
-    private static final By ASSIGNEES_ASSIGN_BTN = By.xpath("//button[text()[contains(.,'Assignees')]]");
-    private static final By MILESTONE_ASSIGN_BTN = By.xpath("//button[text()[contains(.,'Milestone')]]");
+	private static final By LABELS_ASSIGN_BTN = By.xpath("//button[text()[contains(.,'Labels')]]");
+	private static final By ASSIGNEES_ASSIGN_BTN = By.xpath("//button[text()[contains(.,'Assignees')]]");
+	private static final By MILESTONE_ASSIGN_BTN = By.xpath("//button[text()[contains(.,'Milestone')]]");
 
-    public IssuePage(WebDriver driver) {
-        super(driver);
-    }
+	public IssuePage(WebDriver driver) {
+		super(driver);
+	}
 
-    @Override
-    void assertErrorMessage(String messageText) {
-        // TODO Auto-generated method stub
-    }
+	@Override
+	void assertErrorMessage(String messageText) {
+		// TODO Auto-generated method stub
+	}
 
-    @Override
-    protected void assertInPage() {
-        bot.waitForElementVisibiltyBy(ISSUE_TITLE_LBL);
-    }
+	@Override
+	protected void assertInPage() {
+		bot.waitForElementVisibiltyBy(ISSUE_TITLE_LBL);
+	}
 
-    public String getIssueTitleLbl() {
-        return bot.getTextFromElementBy(ISSUE_TITLE_LBL);
-    }
+	public String getIssueTitleLbl() {
+		return bot.getTextFromElementBy(ISSUE_TITLE_LBL);
+	}
 
-    public AssignAssigneesToIssueWidget clickOnAssingeesAssignBtn() {
-        bot.clickOnElementBy(ASSIGNEES_ASSIGN_BTN);
-        return new AssignAssigneesToIssueWidget(driver);
-    }
+	public AssignAssigneesToIssueWidget clickOnAssingeesAssignBtn() {
+		bot.clickOnElementBy(ASSIGNEES_ASSIGN_BTN);
+		return new AssignAssigneesToIssueWidget(driver);
+	}
 
-    public AssignlabelsToIssueWidget clickOnLabelsAssignBtn() {
-        bot.clickOnElementBy(LABELS_ASSIGN_BTN);
-        return new AssignlabelsToIssueWidget(driver);
-    }
+	public AssignlabelsToIssueWidget clickOnLabelsAssignBtn() {
+		bot.clickOnElementBy(LABELS_ASSIGN_BTN);
+		return new AssignlabelsToIssueWidget(driver);
+	}
 
-    public AssignMileStoneToIssueWidget clickOnMileStoneAssignBtn() {
-        bot.clickOnElementBy(MILESTONE_ASSIGN_BTN);
-        return new AssignMileStoneToIssueWidget(driver);
-    }
+	public AssignMileStoneToIssueWidget clickOnMileStoneAssignBtn() {
+		bot.clickOnElementBy(MILESTONE_ASSIGN_BTN);
+		return new AssignMileStoneToIssueWidget(driver);
+	}
 }

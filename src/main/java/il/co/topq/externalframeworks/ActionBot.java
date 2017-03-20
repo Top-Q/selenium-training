@@ -31,6 +31,7 @@ public class ActionBot {
         WebElement element = driver.findElement(by);
         element.clear();
         element.sendKeys(text);
+        report.log("typed"+text+" to element");
         return this;
     }
 
@@ -42,8 +43,11 @@ public class ActionBot {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    public String getTextFromElementBy(By by) {
-        return driver.findElement(by).getText();
+    public String getTextFromElementBy(By by) {	 
+        String text = driver.findElement(by).getText();
+        report.log("retrieved text from element");
+        return text;
+       
     }
 
     public ActionBot dragFromAndDropTo(By from, By to) {

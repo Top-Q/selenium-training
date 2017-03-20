@@ -13,18 +13,42 @@ public class SignInPage extends AbstractPageObject {
     }
 
     public SignInPage typeToEmailTb(String email) {
-        bot.typeToElementBy(LOGIN_TB, email);
-        return this;
+    	try{
+    		report.startLevel("entering email cridentials");
+	        bot.typeToElementBy(LOGIN_TB, email);
+	        report.log("Wrote email to email field");
+	        return this;
+    	}
+    	finally{
+    		report.endLevel();
+    	}
+    	
+
     }
 
     public SignInPage typeToPasswordTb(String password) {
-        bot.typeToElementBy(PASSWORD_TB, password);
-        return this;
+    	try{
+    		report.startLevel("entering password cridentials");
+    		bot.typeToElementBy(PASSWORD_TB, password);
+    		report.log("Wrote password to password field");
+    		return this;
+    	}
+    	finally{
+    		report.endLevel();
+    	}
     }
 
     public HomePage clickOnCommitBtn() {
+    	try{
+    	report.startLevel("clicking on Commit button");
         bot.clickOnElementBy(LOGIN_BTN);
+        report.log("clicked the commit button ");
         return new HomePage(driver);
+    	}finally
+    	{
+    		report.endLevel();
+    	}
+    
     }
 
     @Override
