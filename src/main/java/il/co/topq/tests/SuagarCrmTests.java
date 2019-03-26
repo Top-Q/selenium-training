@@ -29,8 +29,8 @@ public class SuagarCrmTests {
         driver.findElement(By.linkText("Sign in")).click();
         //WebDriverWait wait = new WebDriverWait(driver, 30);
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.name("commit")));
-        driver.findElement(By.name("login")).sendKeys("sudo.chmod.a.x777@gmail.com");
-        driver.findElement(By.name("password")).sendKeys("sudogit777");
+        driver.findElement(By.name("login")).sendKeys("email@.com");
+        driver.findElement(By.name("password")).sendKeys("password");
         driver.findElement(By.name("commit")).click();
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.className("mini-repo-list-item")));
         driver.findElement(By.className("mini-repo-list-item")).click();
