@@ -15,17 +15,17 @@ import il.co.topq.pageobject.*;
 public class SubmitNewIssueTest extends AbstractTestCase {
     @DataProvider(name = "parametersForIssuesToColumns")
     public Object[][] createDataForAddingIssuesToColumns() {
-        return new Object[][]{{"sudo.chmod.a.x777@gmail.com", "sudogit777", "This is project title", "column columns", "tuj"}};
+        return new Object[][]{{"example@.com", "password", "This is project title", "column columns", "tuj"}};
     }
 
     @DataProvider(name = "parameters")
     public Object[][] createData() {
-        return new Object[][]{{"sudo.chmod.a.x777@gmail.com", "sudogit777"}};
+        return new Object[][]{{"example@.com", "password"}};
     }
 
     @DataProvider(name = "newProJectParameters")
     public Object[][] createNewData() {
-        return new Object[][]{{"sudo.chmod.a.x777@gmail.com", "sudogit777", "This is project title", "This is project description", "column columns"}};
+        return new Object[][]{{"example@.com", "password", "This is project title", "This is project description", "column columns"}};
     }
 
     @DataProvider(name = "excelparameters")
